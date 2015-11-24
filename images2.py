@@ -7,7 +7,7 @@ A = 100
 D = 25
 
 column_length = 2*D 
-dist_of_arrow_from_footing_base = 20 # say
+dist_of_arrow_from_footing_base = 10 # say
 no_of_arrows = 10 # say
 
 points_list = [((A-a) / 2, D + column_length), ((A-a) / 2, D), (0, D), (0, 0), (A, 0), (A, D), ((A + a) / 2, D), ((A + a) / 2, D + column_length)]
