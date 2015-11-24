@@ -16,16 +16,13 @@ Dm = 15
 
 a_ = 35
 
-#column_length = 2*D # you can change this value, if you later want to.
+
 dist_of_arrow_from_footing_base = 10 # say
 no_of_arrows = 10 # say
 
 
 
 points_list = [((A - a) / 2, 2*D), ((A - a) / 2, D), ((A - a_) / 2, D), ((A - a_) / 2, Dm), (0, Dm) , (0, 0), (A, 0), (A, Dm) , ((A + a_) / 2, Dm), ((A + a_) / 2, D), ((A + a) / 2, D), ((A +a) / 2, 2*D)]     
-
-# do you need this point: ((A - a) / 2, 0) ?
-#there were two errors: one 2D was there. Instead, it should be 2*D
 
 
 # print points_list[1]
