@@ -10,27 +10,16 @@ a = 8
 
 A = 80
 
-D = 25
+D = 20
 
-Dm = 15 
-
-a_ = 35
+Dm = 10 
 
 
-dist_of_arrow_from_footing_base = 10 # say
-no_of_arrows = 10 # say
+dist_of_arrow_from_footing_base = 10 
+no_of_arrows = 10 
 
 
-
-points_list = [((A - a) / 2, 2*D), ((A - a) / 2, D), ((A - a_) / 2, D), ((A - a_) / 2, Dm), (0, Dm) , (0, 0), (A, 0), (A, Dm) , ((A + a_) / 2, Dm), ((A + a_) / 2, D), ((A + a) / 2, D), ((A +a) / 2, 2*D)]     
-
-
-# print points_list[1]
-
-# # print len(points_list[1])
-
-# print len(str(points_list[1]))
-
+points_list = [((A - a) / 2, 2*D), ((A - a) / 2, D), ((A - a - D) / 2, D), (0, Dm), (0, 0), ((A - a) / 2, 0) , (A, 0), (A, Dm), ((A + a + D) / 2, D) , ((A + a) / 2, D), ((A + a) / 2, 2*D)]    
 
 
 string_for_csv = str()

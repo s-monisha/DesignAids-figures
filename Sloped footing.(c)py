@@ -12,23 +12,15 @@ A = 80
 
 D = 20
 
-Dm = 10 
+Dm = 8
 
 
-dist_of_arrow_from_footing_base = 10 # say
-no_of_arrows = 10 # say
+dist_of_arrow_from_footing_base = 10 
+no_of_arrows = 10 
 
 
 
-points_list = [((A - a) / 2, 2*D), ((A - a) / 2, D), ((A - a - D) / 2, D), (0, Dm), (0, 0), ((A - a) / 2, 0) , (A, 0), (A, Dm), ((A + a + D) / 2, D) , ((A + a) / 2, D), ((A + a) / 2, 2*D)]    
-
-
-# print points_list[1]
-
-# # print len(points_list[1])
-
-# print len(str(points_list[1]))
-
+points_list = [((A - a) / 2, 2*D), ((A - a) / 2, D), (0, Dm), (0, 0), ((A - a) / 2, 0) , (A, 0), (A, Dm), ((A + a) / 2, D) , ((A + a) / 2, 2*D)]   
 
 
 string_for_csv = str()
@@ -88,3 +80,4 @@ for i in xrange(len(final_arrow_points)):
     arrow(final_arrow_points[i][0], final_arrow_points[i][1])
 drawing.save()
 print "'" + drawing_name + ".dxf'", "file generated in the same directory"
+
