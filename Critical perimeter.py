@@ -30,18 +30,16 @@ print "'" + inp + ".csv'", "file generated in the same directory"
 drawing_name = raw_input("Enter a drawing name to be created without the extension dxf: ")
 drawing = dxf.drawing(drawing_name+".dxf")
 
-# all squares are drawn below:
+# squares:
 drawing.add(dxf.polyline(points_list[0:5], color=7))
-#polyline= dxf.polyline(linetype='DOT')
 drawing.add(dxf.polyline(points_list[5:10], color=7))
 drawing.add(dxf.polyline(points_list[10:15], color=7))
 
-# Now the diagonal lines: 
+# diagonal lines: 
 drawing.add(dxf.line(points_list[0],points_list[5], color= 7))
 drawing.add(dxf.line(points_list[1],points_list[6], color= 7))
 drawing.add(dxf.line(points_list[2],points_list[7], color= 7))
 drawing.add(dxf.line(points_list[3],points_list[8], color= 7))
 
 drawing.save()
-#drawing.add(polyline)
 print "'" + drawing_name + ".dxf'", "file generated in the same directory"
