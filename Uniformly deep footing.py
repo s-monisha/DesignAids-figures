@@ -10,7 +10,7 @@ column_length = 2*D
 dist_of_arrow_from_footing_base = 10 
 no_of_arrows = 10 
 
-points_list = [((A-a) / 2, 2*D), ((A-a) / 2, D), (0, D), (0, 0), (A, 0), (A, D), ((A + a) / 2, D), ((A + a) / 2, 2*D)]
+points_list = [((A-a) / 2, 2*D), ((A-a) / 2, D), (0, D), (0, 0), (A, 0), (A, D), ((A + a) / 2, D), ((A + a) / 2, 2*D), ((A - 2*a) / 2, 2*D), ((A -  a) / 2, 2*D), ((A - a) / 2 + (a / 3), 2*D), ((A / 2), (a / 3) + 2*D),  ((A / 2), 2*D - (a / 3)), ((A + a) / 2 - (a / 3), 2*D), ((A + 2*a) / 2, 2*D)]
 
 string_for_csv = str()
 for i in xrange(len(points_list)):
@@ -40,7 +40,7 @@ right_point = A,-dist_of_arrow_from_footing_base
 drawing.add(dxf.line(left_point,right_point, color=7))
 
 
-length_arrow = 5
+length_arrow = 3
 angle_arrow = 30 # in degrees
 def arrow(bottom_point,arrow_point):
     drawing.add(dxf.line(bottom_point,arrow_point, color= 7))
