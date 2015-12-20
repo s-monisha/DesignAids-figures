@@ -90,6 +90,8 @@ drawing.add(dxf.text('P (kN)', height=4, halign=CENTER, alignpoint=(40, 58)))
 drawing.add(dxf.text('Dm', height=4, halign=CENTER, alignpoint=(90, 8)))
 drawing.add(dxf.text('D/2', height=3, halign=CENTER, alignpoint=(30, 30)))
 drawing.add(dxf.text('D/2', height=3, halign=CENTER, alignpoint=(50, 30)))
+drawing.add(dxf.text(u"\u03B2", height=2.5, halign=CENTER, alignpoint=(11, 10)))
+drawing.add(dxf.text(u"\u03B2", height=2.5, halign=CENTER, alignpoint=(70, 10)))
 
 
 #p(kn/m)
@@ -111,7 +113,7 @@ drawing.add(dxf.line((98, 0), (102, 0)))
 #d arrow
 drawing.add(dxf.line((100, 25), (98, 22)))
 drawing.add(dxf.line((100, 25), (102, 22)))
-#d lowr arroe
+#d lower arrow
 drawing.add(dxf.line((100, 0), (98, 2)))
 drawing.add(dxf.line((100, 0), (102, 2)))
 
@@ -128,10 +130,10 @@ drawing.add(dxf.line((80, -20), (78, -22)))
 
 #a
 drawing.add(dxf.line((36, 32), (44, 32)))
-#arrw
+#arrow
 drawing.add(dxf.line((36, 32), (38, 34)))
 drawing.add(dxf.line((36, 32), (38, 30)))
-#rught arrw
+#right arrow
 drawing.add(dxf.line((44, 32), (42, 34)))
 drawing.add(dxf.line((44, 32), (42, 30)))
 
@@ -142,38 +144,38 @@ drawing.add(dxf.line((88, 0), (92, 0)))
 drawing.add(dxf.line((90, 20), (90, 15)))
 drawing.add(dxf.line((90, 15), (88, 17)))
 drawing.add(dxf.line((90, 15), (92, 17)))
-#arrow dm lowr
+#arrow dm lower
 drawing.add(dxf.line((90, 0), (90, -10)))
 drawing.add(dxf.line((90, 0), (88, -2)))
 drawing.add(dxf.line((90, 0), (92, -2)))
 
 #beta
 drawing.add(dxf.line((2, 10), (10, 10)))
-drawing.add(dxf.line((78, 10), (70, 10)))
-#beta arrw
+drawing.add(dxf.line((78, 10), (71, 10)))
+#beta arrow
 drawing.add(dxf.line((5, 18), (5, 13)))
 drawing.add(dxf.line((5, 13), (3, 15)))
 drawing.add(dxf.line((5, 13), (7, 15)))
-#beta scnd arrw
-drawing.add(dxf.line((78, 18), (78, 13)))
-drawing.add(dxf.line((78, 13), (76, 15)))
-drawing.add(dxf.line((78, 13), (80, 15)))
+#beta second arrow
+drawing.add(dxf.line((75, 18), (75, 13)))
+drawing.add(dxf.line((75, 13), (73, 15)))
+drawing.add(dxf.line((75, 13), (77, 15)))
 #d/2
 drawing.add(dxf.line((25, 28), (34, 28)))
 drawing.add(dxf.line((25, 32), (25, 24)))
-#d/2 arrw
+#d/2 arrow
 drawing.add(dxf.line((25, 28), (27, 29)))
 drawing.add(dxf.line((25, 28), (27, 27)))
-#d/2 right arrw
+#d/2 right arrow
 drawing.add(dxf.line((34, 28), (32, 29)))
 drawing.add(dxf.line((34, 28), (32, 27)))
 #d/2
 drawing.add(dxf.line((46, 28), (54, 28)))
 drawing.add(dxf.line((54, 32), (54, 24)))
-#d/2 scnd lft arrw
+#d/2 second left arrow
 drawing.add(dxf.line((46, 28), (47, 29)))
 drawing.add(dxf.line((46, 28), (47, 27)))
-#d/2 scnd rght arrw
+#d/2 second right arrow
 drawing.add(dxf.line((54, 28), (52, 29)))
 drawing.add(dxf.line((54, 28), (52, 27)))
 

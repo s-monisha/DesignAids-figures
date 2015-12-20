@@ -1,6 +1,7 @@
 from dxfwrite import DXFEngine as dxf
 import csv
 import math
+import pdb
 
 a = 10
 A = 100
@@ -11,6 +12,8 @@ dist_of_arrow_from_footing_base = 10
 no_of_arrows = 10 
 
 points_list = [((A-a) / 2, 2*D), ((A-a) / 2, D), (0, D), (0, 0), (A, 0), (A, D), ((A + a) / 2, D), ((A + a) / 2, 2*D), ((A - 2*a) / 2, 2*D), ((A -  a) / 2, 2*D), ((A - a) / 2 + (a / 3), 2*D), ((A / 2), (a / 3) + 2*D),  ((A / 2), 2*D - (a / 3)), ((A + a) / 2 - (a / 3), 2*D), ((A + 2*a) / 2, 2*D)]
+
+pdb.set_trace()
 
 string_for_csv = str()
 for i in xrange(len(points_list)):
@@ -83,7 +86,7 @@ drawing.add(dxf.line((108, 0), (112, 0)))
 #d arrow
 drawing.add(dxf.line((110, 20), (108, 18)))
 drawing.add(dxf.line((110, 20), (112, 18)))
-#d scnd arrow
+#d second arrow
 drawing.add(dxf.line((110, 0), (108, 2)))
 drawing.add(dxf.line((110, 0), (112, 2)))
 #A
@@ -98,10 +101,10 @@ drawing.add(dxf.line((100, -20), (98, -18)))
 drawing.add(dxf.line((100, -20), (98, -22)))
 #a
 drawing.add(dxf.line((45, 30), (55, 30)))
-#a arrw lft
+#a arrow left
 drawing.add(dxf.line((45,30), (47,32)))
 drawing.add(dxf.line((45,30), (47,28)))
-#a arrw rght
+#a arrow rght
 drawing.add(dxf.line((55,30), (53,32)))
 drawing.add(dxf.line((55,30), (53,28)))
 #P(kn)

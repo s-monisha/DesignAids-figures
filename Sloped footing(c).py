@@ -81,9 +81,10 @@ drawing.add(dxf.text('A', height=4, halign=CENTER, alignpoint=(50, -18)))
 drawing.add(dxf.text('p(kN/m ^ 2)', height=3.5, halign=CENTER, alignpoint=(-16, -8)))
 drawing.add(dxf.text('P (kN)', height=3, halign=CENTER, alignpoint=(50, 54)))
 drawing.add(dxf.text('Dm', height=4, halign=CENTER, alignpoint=(106, -10)))
+drawing.add(dxf.text(u"\u03B2", height=2.5, halign=CENTER, alignpoint=(13, 8)))
+drawing.add(dxf.text(u"\u03B2", height=2.5, halign=CENTER, alignpoint=(87, 8)))
 
 #p(kn)
-#drawing.add(dxf.line((-10, 0), (-10, -10)))
 #upper
 drawing.add(dxf.line((-12, 0), (-8, 0)))
 drawing.add(dxf.line((-10, 10), (-10, 0)))
@@ -102,7 +103,7 @@ drawing.add(dxf.line((108, 0), (112, 0)))
 #d arrow
 drawing.add(dxf.line((110, 20), (108, 18)))
 drawing.add(dxf.line((110, 20), (112, 18)))
-#d scnd arrow
+#d second arrow
 drawing.add(dxf.line((110, 0), (108, 2)))
 drawing.add(dxf.line((110, 0), (112, 2)))
 
@@ -129,13 +130,13 @@ drawing.add(dxf.line((103, 8), (103, 0)))
 drawing.add(dxf.line((101, 8), (105, 8)))
 drawing.add(dxf.line((105, 0), (105, -4)))
 drawing.add(dxf.line((101, 0), (105, 0)))
-#dm uppr arrw
+#dm upper arrow
 drawing.add(dxf.line((103, 8), (101, 6)))
 drawing.add(dxf.line((103, 8), (105, 6)))
-#dm lowr arrw
+#dm lower arrow
 drawing.add(dxf.line((103, 0), (101, 2)))
 drawing.add(dxf.line((103, 0), (105, 2)))
-#dm extnd arrw
+#dm extended arrow
 drawing.add(dxf.line((105, -4), (104, -3)))
 drawing.add(dxf.line((105, -4), (106, -3)))
 
@@ -147,7 +148,7 @@ drawing.add(dxf.line((88, 8), (98, 8)))
 drawing.add(dxf.line((10, 20), (10, 12)))
 drawing.add(dxf.line((10, 12), (8, 14)))
 drawing.add(dxf.line((10, 12), (12, 14)))
-#beta scnd arrow
+#beta second arrow
 drawing.add(dxf.line((90, 20), (90, 12)))
 drawing.add(dxf.line((90, 12), (88, 14)))
 drawing.add(dxf.line((90, 12), (92, 14)))

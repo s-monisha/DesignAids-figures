@@ -4,36 +4,29 @@ import csv
 
 import math
 
-#a = 8
-a = input("enter a: ")
+a = 8
 
-#A = 80
+A = 80
 
-A = input("enter A: ")
+D = 20
 
-#D = 20
+Dm = 10 
 
-D = input("enter D: ")
+#if a < A/3 :
+	#print("A is always greater")
 
-#Dm = 10 
+#elif D < A/3 :
+	#print("D is greater than a")
 
-Dm = input("enter Dm: ")
-
-if a < A/3 :
-	print("A is always greater")
-
-elif D < A/3 :
-	print("D is greater than a")
-
-else:
-	print("wrong output")
+#else:
+	#print("wrong output")
 
 #print('no. a',a, '!')
 
 
 
-points_list = [((A - a) / 2, 2*D), ((A - a) / 2, D), (0, Dm), (0, 0), ((A - a) / 2, 0) , (A, 0), (A, Dm), ((A + a) / 2, D) , ((A + a) / 2, 2*D)]  
-
+points_list = [((A - a) / 2, 2*D), ((A - a) / 2, D), (0, Dm), (0, 0), ((A - a) / 2, 0) , (A, 0), (A, Dm), ((A + a) / 2, D) , ((A + a) / 2, 2*D), ((A - 2*a) / 2, 2*D), ((A -  a) / 2, 2*D), ((A - a) / 2 + (a / 3), 2*D), ((A / 2), (a / 3) + 2*D),  ((A / 2), 2*D - (a / 3)), ((A + a) / 2 - (a / 3), 2*D), ((A + 2*a) / 2, 2*D)]
+ 
 
 string_for_csv = str()
 
@@ -76,29 +69,29 @@ drawing.add(dxf.text('1\'', height=2, halign=CENTER, alignpoint=(54, -4)))
 
 #a
 drawing.add(dxf.line((36, 32), (44, 32)))
-#arrw
+#arrow
 drawing.add(dxf.line((36, 32), (37, 33)))
 drawing.add(dxf.line((36, 32), (37, 31)))
-#rught arrw
+#right arrow
 drawing.add(dxf.line((44, 32), (43, 33)))
 drawing.add(dxf.line((44, 32), (43, 31)))
 
 #d/2
 drawing.add(dxf.line((25, 28), (34, 28)))
 drawing.add(dxf.line((25, 32), (25, 0), layer='TESTLAYER',linetype='PHANTOMX2'))
-#d/2 arrw
+#d/2 arrow
 drawing.add(dxf.line((25, 28), (26, 29)))
 drawing.add(dxf.line((25, 28), (26, 27)))
-#d/2 right arrw
+#d/2 right arrow
 drawing.add(dxf.line((34, 28), (33, 29)))
 drawing.add(dxf.line((34, 28), (33, 27)))
 #d/2
 drawing.add(dxf.line((46, 28), (54, 28)))
 drawing.add(dxf.line((54, 32), (54, 0), layer='TESTLAYER',linetype='PHANTOMX2'))
-#d/2 scnd lft arrw
+#d/2 second left arrow
 drawing.add(dxf.line((46, 28), (47, 29)))
 drawing.add(dxf.line((46, 28), (47, 27)))
-#d/2 scnd rght arrw
+#d/2 second right arrow
 drawing.add(dxf.line((54, 28), (53, 29)))
 drawing.add(dxf.line((54, 28), (53, 27)))
 
@@ -109,16 +102,16 @@ drawing.add(dxf.line((80, -2), (80, -8)))
 #A arrow left
 drawing.add(dxf.line((0, -5), (2, -3)))
 drawing.add(dxf.line((0, -5), (2, -7)))
-#A arrow rght
+#A arrow right
 drawing.add(dxf.line((80, -5), (78, -3)))
 drawing.add(dxf.line((80, -5), (78, -7)))
 
 #D line
 drawing.add(dxf.line((38, 20), (38, 0)))
-#D uppr arrw
+#D upper arrow
 drawing.add(dxf.line((38, 20), (37, 19)))
 drawing.add(dxf.line((38, 20), (39, 19)))
-#D lwr arrw
+#D lower arrow
 drawing.add(dxf.line((38, 0), (37, 1)))
 drawing.add(dxf.line((38, 0), (39, 1)))
 

@@ -61,21 +61,21 @@ drawing.add(dxf.text('1\'', height=3, halign=CENTER, alignpoint=(50, 17)))
 drawing.add(dxf.line((90, 80), (90, 0)))
 drawing.add(dxf.line((88, 80), (92, 80)))
 drawing.add(dxf.line((88, 0), (92, 0)))
-#A right uppr arrw
+#A right upper arrow
 drawing.add(dxf.line((90, 80), (88, 78)))
 drawing.add(dxf.line((90, 80), (92, 78)))
-#A rght bttm arrw
+#A right bottom arrow
 drawing.add(dxf.line((90, 0), (88, 2)))
 drawing.add(dxf.line((90, 0), (92, 2)))
 
-#A bttom
+#A bottom
 drawing.add(dxf.line((0, -10), (80, -10)))
 drawing.add(dxf.line((0, -8), (0, -12)))
 drawing.add(dxf.line((80, -8), (80, -12)))
-#A lft bttm arrw
+#A left bottom arrow
 drawing.add(dxf.line((0, -10), (2, -8)))
 drawing.add(dxf.line((0, -10), (2, -12)))
-#A rght bttm arrw
+#A right bottom arrow
 drawing.add(dxf.line((80, -10), (78, -8)))
 drawing.add(dxf.line((80, -10), (78, -12)))
 
@@ -86,61 +86,61 @@ drawing.add(dxf.line((0, 40), (80, 40), layer='TESTLAYER',linetype='PHANTOMX2'))
 drawing.add(dxf.line((55, 49), (55, 45)))
 drawing.add(dxf.line((49, 45), (58, 45)))
 drawing.add(dxf.line((52, 49), (58, 49)))
-#d/2 arrw upper
+#d/2 arrow upper
 drawing.add(dxf.line((55, 49), (54, 48)))
 drawing.add(dxf.line((55, 49), (56, 48)))
-#d/2 arrw lwr
+#d/2 arrow lower
 drawing.add(dxf.line((55, 45), (54, 46)))
 drawing.add(dxf.line((55, 45), (56, 46)))
 
 #a
 drawing.add(dxf.line((55, 45), (55, 36)))
 drawing.add(dxf.line((49, 36), (58, 36)))
-#a uppr arrw
+#a upper arrow
 drawing.add(dxf.line((55, 45), (54, 44)))
 drawing.add(dxf.line((55, 45), (56, 44)))
-#a lwr arrw
+#a lower arrow
 drawing.add(dxf.line((55, 36), (54, 37)))
 drawing.add(dxf.line((55, 36), (56, 37)))
 
 #d/2
 drawing.add(dxf.line((55, 36), (55, 31)))
 drawing.add(dxf.line((52, 31), (58, 31)))
-#d/2 uppr arrw
+#d/2 upper arrow
 drawing.add(dxf.line((55, 36), (54, 35)))
 drawing.add(dxf.line((55, 36), (56, 35)))
-#d/2 lwr arrw
+#d/2 lower arrow
 drawing.add(dxf.line((55, 31), (54, 32)))
 drawing.add(dxf.line((55, 31), (56, 32)))
 
-#d/2 bttm line
+#d/2 bottom line
 drawing.add(dxf.line((31, 25), (36, 25)))
-#d/2 rght bttm
+#d/2 right bottom
 drawing.add(dxf.line((36, 31), (36, 23)))
-#d/2 bttm lft line
+#d/2 bottom left line
 drawing.add(dxf.line((31, 27), (31, 23)))
-#d/2 bttm lft arrw
+#d/2 bottom left arrow
 drawing.add(dxf.line((31, 25), (32, 24)))
 drawing.add(dxf.line((31, 25), (32, 26)))
-#d/2 bttm rght arrw
+#d/2 bottom right arrow
 drawing.add(dxf.line((36, 25), (35, 24)))
 drawing.add(dxf.line((36, 25), (35, 26)))
-#a bttm line
+#a bottom line
 drawing.add(dxf.line((36, 25), (44, 25)))
 drawing.add(dxf.line((44, 31), (44, 22)))
-#d/2 bttm line rght
+#d/2 bottom line right
 drawing.add(dxf.line((44, 25), (49, 25)))
 drawing.add(dxf.line((49, 23), (49, 27)))
-#d/2 bttm line lft arrw
+#d/2 bottom line left arrow
 drawing.add(dxf.line((44, 25), (45, 24)))
 drawing.add(dxf.line((44, 25), (45, 26)))
-#d/2 bttm line lft arrw
+#d/2 bottom line left arrow
 drawing.add(dxf.line((49, 25), (48, 24)))
 drawing.add(dxf.line((49, 25), (48, 26)))
-#a bttm lft arrw
+#a bottom left arrow
 drawing.add(dxf.line((36, 25), (37, 24)))
 drawing.add(dxf.line((36, 25), (37, 26)))
-# a bttm rght arrw
+# a bottom right arrow
 drawing.add(dxf.line((44, 25), (43, 24)))
 drawing.add(dxf.line((44, 25), (43, 26)))
 

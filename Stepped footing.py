@@ -86,6 +86,8 @@ drawing.add(dxf.text('Dm', height=4, halign=CENTER, alignpoint=(90, 8)))
 drawing.add(dxf.text('a\'', height=3, halign=CENTER, alignpoint=(30, 35)))
 drawing.add(dxf.text('1\'', height=3, halign=CENTER, alignpoint=(20, 43)))
 drawing.add(dxf.text('2\'', height=3, halign=CENTER, alignpoint=(10, 43)))
+drawing.add(dxf.text('1\'', height=3, halign=CENTER, alignpoint=(22, -25)))
+drawing.add(dxf.text('2\'', height=3, halign=CENTER, alignpoint=(10, -25)))
 
 #p(kn/m)
 drawing.add(dxf.line((-12, 0), (-8, 0)))
@@ -105,7 +107,7 @@ drawing.add(dxf.line((98, 0), (102, 0)))
 #d arrow
 drawing.add(dxf.line((100, 25), (98, 22)))
 drawing.add(dxf.line((100, 25), (102, 22)))
-#d lowr arrow
+#d lower arrow
 drawing.add(dxf.line((100, 0), (98, 2)))
 drawing.add(dxf.line((100, 0), (102, 2)))
 #A
@@ -115,16 +117,16 @@ drawing.add(dxf.line((80, -18), (80, -22)))
 #A arrow left
 drawing.add(dxf.line((0, -20), (2, -18)))
 drawing.add(dxf.line((0, -20), (2, -22)))
-#A arrow rght
+#A arrow right
 drawing.add(dxf.line((80, -20), (78, -18)))
 drawing.add(dxf.line((80, -20), (78, -22)))
 
 #a
 drawing.add(dxf.line((36, 40), (44, 40)))
-#arrw
+#arrow
 drawing.add(dxf.line((36, 40), (38, 42)))
 drawing.add(dxf.line((36, 40), (38, 38)))
-#right arrw
+#right arrow
 drawing.add(dxf.line((44, 40), (42, 42)))
 drawing.add(dxf.line((44, 40), (42, 38)))
 #dm
@@ -134,16 +136,16 @@ drawing.add(dxf.line((88, 0), (92, 0)))
 drawing.add(dxf.line((90, 20), (90, 15)))
 drawing.add(dxf.line((90, 15), (88, 17)))
 drawing.add(dxf.line((90, 15), (92, 17)))
-#arrow dm lowr
+#arrow dm lower
 drawing.add(dxf.line((90, 0), (90, -10)))
 drawing.add(dxf.line((90, 0), (88, -2)))
 drawing.add(dxf.line((90, 0), (92, -2)))
 #a_ line
 drawing.add(dxf.line((22, 31), (57, 31)))
-#a_arrow lft
+#a_arrow left
 drawing.add(dxf.line((22, 31), (24, 33)))
 drawing.add(dxf.line((22, 31), (24, 29)))
-#a_right arrw
+#a_right arrow
 drawing.add(dxf.line((57, 31), (55, 33)))
 drawing.add(dxf.line((57, 31), (55, 29)))
 
