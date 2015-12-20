@@ -1,4 +1,5 @@
 from dxfwrite import DXFEngine as dxf
+from dxfwrite.const import CENTER
 import csv
 import math
 
@@ -55,7 +56,6 @@ final_arrow_points = zip(list_bottom_points,list_arrow_points)
 for i in xrange(len(final_arrow_points)):
     arrow(final_arrow_points[i][0], final_arrow_points[i][1])
 
-print "'" + drawing_name + ".dxf'", "file generated in the same directory"
 
 #text
 
@@ -111,6 +111,7 @@ drawing.add(dxf.line((50, 45), (52, 47)))
 
 drawing.save()
 
+print "'" + drawing_name + ".dxf'", "file generated in the same directory"
 
 
 
