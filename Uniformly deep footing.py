@@ -1,120 +1,133 @@
 from dxfwrite import DXFEngine as dxf
-from dxfwrite.const import CENTER
 import csv
 import math
-import pdb
+from dxfwrite.const import CENTER
 
-a = 10
-A = 100
-D = 25
+#import pdb
 
-column_length = 2*D 
-dist_of_arrow_from_footing_base = 10 
-no_of_arrows = 10 
+#input file
+f=open('first.csv')
+lst={'A':'','D':'','a':''}
+data=[row for row in csv.reader(f)]
+for i in lst.keys():
+    for j in range(len(data)):
+            if(i==data[j][0]):
+                    ans=data[j][1]
+                    break;
+    lst[i]=int(ans)
 
-points_list = [((A-a) / 2, 2*D), ((A-a) / 2, D), (0, D), (0, 0), (A, 0), (A, D), ((A + a) / 2, D), ((A + a) / 2, 2*D), ((A - 2*a) / 2, 2*D), ((A -  a) / 2, 2*D), ((A - a) / 2 + (a / 3), 2*D), ((A / 2), (a / 3) + 2*D),  ((A / 2), 2*D - (a / 3)), ((A + a) / 2 - (a / 3), 2*D), ((A + 2*a) / 2, 2*D)]
+#text size
+textsize = 2.5
 
-pdb.set_trace()
+#arrows/lines function
+def dim12_arrow(u1, u2, u3, u4, l1, l2, l3, l4, c1, c2, c3, c4):
+    drawing.add(dxf.line((c1, c2), (c3, c4)))
+    drawing.add(dxf.line((u1, u2), (u3, u4)))
+    drawing.add(dxf.line((l1, l2), (l3, l4)))
+
+def dim8_arrow(u11, u12, u13, u14, l11, l12, l13, l14):
+    drawing.add(dxf.line((u11, u12), (u13, u14)))
+    drawing.add(dxf.line((l11, l12), (l13, l14)))
+
+def dim4_arrow(l21, l22, l23, l24):
+    drawing.add(dxf.line((l21, l22), (l23, l24)))
+
+def atrace(t1, t2, t3, t4, t5, t6):
+    drawing.add(dxf.trace([(t1, t2), (t3, t4), (t5, t6)]))
+
+points_list = [((lst['A']-lst['a']) / 2, 2*lst['D']), ((lst['A']-lst['a']) / 2, lst['D']), (0, lst['D']), (0, 0),
+                        (lst['A'], 0), (lst['A'], lst['D']), ((lst['A'] + lst['a']) / 2, lst['D']), ((lst['A'] + lst['a']) / 2, 2*lst['D']), ((lst['A'] - 2 *lst['a']) / 2, 2*lst['D']), ((lst['A'] -  lst['a']) / 2, 2*lst['D']), ((lst['A'] - lst['a']) / 2 + (lst['a'] / 3), 2*lst['D']),
+                        ((lst['A'] / 2), (lst['a'] / 3) + 2*lst['D']),  ((lst['A'] / 2), 2*lst['D'] - (lst['a'] / 3)),
+                        ((lst['A'] + lst['a']) / 2 - (lst['a'] / 3), 2*lst['D']), ((lst['A'] + lst['a'])/ 2, 2*lst['D']), ((lst['A'] + 2*lst['a']) / 2, 2*lst['D'])]
+
 
 string_for_csv = str()
 for i in xrange(len(points_list)):
     string_for_csv = string_for_csv + str(points_list[i][0]) + "," + str(points_list[i][1]) + "\n"
 
-print string_for_csv
-
+#csv file
 inp = raw_input("Enter the name of csv file you want to generate: ")
-fw = open(inp+".csv", "w")
-
+fw = open(inp+'.csv', "w")
 fw.write(string_for_csv)
 
-print "'" + inp + ".csv'", "file generated in the same directory"
-
+#dxf drawing
 drawing_name = raw_input("Enter a drawing name to be created without the extension dxf: ")
 drawing = dxf.drawing(drawing_name+".dxf")
 
-# polyline= dxf.polyline()
+#pdb.set_trace()
 
-drawing.add(dxf.polyline(points_list, color=7))
+#lines
+def drawline(points_list):
+    for i in range(len(points_list) - 1):
+        if(i==7):
+            continue
+        c = tuple(points_list[i])
+        d = tuple(points_list[i+1])
+        drawing.add(dxf.line(c, d, color=7))
+
+drawline(points_list)
+
 
 #arrow base line:
+dist_of_arrow = 10
+no_of_arrows = 10
 
-left_point = 0, -dist_of_arrow_from_footing_base
-right_point = A,-dist_of_arrow_from_footing_base
-
+left_point = 0, -dist_of_arrow
+right_point = lst['A'],-dist_of_arrow
 drawing.add(dxf.line(left_point,right_point, color=7))
 
-
-length_arrow = 3
-angle_arrow = 30 # in degrees
-def arrow(bottom_point,arrow_point):
+def arrow(bottom_point,arrow_point, length_arrow = 3):
     drawing.add(dxf.line(bottom_point,arrow_point, color= 7))
-    drawing.add(dxf.line( (arrow_point[0] - math.sin(math.radians(angle_arrow)) * length_arrow , arrow_point[1] - math.cos(math.radians(angle_arrow)) * length_arrow ) ,arrow_point, color = 7))
-    drawing.add(dxf.line( (arrow_point[0] + math.sin(math.radians(angle_arrow)) * length_arrow , arrow_point[1] - math.cos(math.radians(angle_arrow)) * length_arrow) ,arrow_point, color = 7))
+    vertex = arrow_point
+    left_pt = (arrow_point[0] - length_arrow / 6.0 , arrow_point[1] - length_arrow )
+    right_pt = (arrow_point[0] + length_arrow / 6.0 , arrow_point[1] - length_arrow)
+    drawing.add(dxf.trace([vertex, left_pt, right_pt]))
     return
-list_xcoordinates_for_arrows = [(float(A)/(no_of_arrows - 1))*i for i in xrange(no_of_arrows + 1)]
-list_bottom_points = zip(list_xcoordinates_for_arrows,[-dist_of_arrow_from_footing_base] * no_of_arrows)
+list_xcoordinates_for_arrows = [(float(lst['A'])/(no_of_arrows - 1))*i for i in xrange(no_of_arrows + 1)]
+list_bottom_points = zip(list_xcoordinates_for_arrows,[-dist_of_arrow] * no_of_arrows)
 list_arrow_points = zip(list_xcoordinates_for_arrows,[0] * no_of_arrows)
 final_arrow_points = zip(list_bottom_points,list_arrow_points)
-
 for i in xrange(len(final_arrow_points)):
     arrow(final_arrow_points[i][0], final_arrow_points[i][1])
 
-
 #text
+drawing.add(dxf.text('a', height=textsize, halign=CENTER, alignpoint=(50, 33)))
+drawing.add(dxf.text('D', height=textsize, halign=CENTER, alignpoint=(115, 8)))
+drawing.add(dxf.text('A', height=textsize, halign=CENTER, alignpoint=(50, -18)))
+drawing.add(dxf.text('P (kN)', height=textsize, halign=CENTER, alignpoint=(50, 53)))
+drawing.add(dxf.text('p (kN/m\u00B2)', height=textsize, halign=CENTER, alignpoint=
+                  (-12, -7)))
 
-drawing.add(dxf.text('a', height=3, halign=CENTER, alignpoint=(50, 33)))
-drawing.add(dxf.text('D', height=3, halign=CENTER, alignpoint=(115, 8)))
-drawing.add(dxf.text('A', height=3.5, halign=CENTER, alignpoint=(50, -18)))
-drawing.add(dxf.text('P (kN)', height=3, halign=CENTER, alignpoint=(50, 53)))
-drawing.add(dxf.text('p(kN/m ^ 2)', height=3, halign=CENTER, alignpoint=(-15, -8)))
+#p(kN/m)
+#def dim8_arrow(u11, u12, u13, u14, l11, l12, l13, l14)
+dim8_arrow(-12, 0, -8, 0, -10, 10, -10, 0)
+atrace(-10.5, 3, -9.5, 3, -10, 0)
 
-#p(kn)
-#upper
-drawing.add(dxf.line((-12, 0), (-8, 0)))
-drawing.add(dxf.line((-10, 10), (-10, 0)))
-drawing.add(dxf.line((-10, 0), (-12, 2)))
-drawing.add(dxf.line((-10, 0), (-8, 2)))
-#lower
-drawing.add(dxf.line((-12, -10), (-8, -10)))
-drawing.add(dxf.line((-10, -10), (-10, -20)))
-drawing.add(dxf.line((-10, -10), (-12, -12)))
-drawing.add(dxf.line((-10, -10), (-8, -12)))
+#p(kN/m)lower
+dim8_arrow(-12, -10, -8, -10, -10, -10, -10, -20)
+atrace(-10.5, -13, -9.5, -13, -10, -10)
+
 #D
-drawing.add(dxf.line((110, 20), (110, 0)))
-drawing.add(dxf.line((108, 20), (112, 20)))
-drawing.add(dxf.line((108, 0), (112, 0)))
-#d arrow
-drawing.add(dxf.line((110, 20), (108, 18)))
-drawing.add(dxf.line((110, 20), (112, 18)))
-#d second arrow
-drawing.add(dxf.line((110, 0), (108, 2)))
-drawing.add(dxf.line((110, 0), (112, 2)))
+#def dim12_arrow(u1, u2, u3, u4, l1, l2, l3, l4, c1, c2, c3, c4):
+dim12_arrow(108, 20, 112, 20, 110, 20, 110, 0, 108, 0, 112, 0)
+atrace(109.5, 17, 110.5, 17, 110, 20)
+atrace(109.5, 3, 110.5, 3, 110, 0)
+
 #A
-drawing.add(dxf.line((0, -20), (100, -20)))
-drawing.add(dxf.line((0, -18), (0, -22)))
-drawing.add(dxf.line((100, -18), (100, -22)))
-#left side
-drawing.add(dxf.line((0, -20), (2, -18)))
-drawing.add(dxf.line((0, -20), (2, -22)))
-#right side
-drawing.add(dxf.line((100, -20), (98, -18)))
-drawing.add(dxf.line((100, -20), (98, -22)))
+#def dim12_arrow(u1, u2, u3, u4, l1, l2, l3, l4, c1, c2, c3, c4):
+dim12_arrow(0, -18, 0, -22, 0, -20, 100, -20, 100, -18, 100, -22)
+atrace(3, -19.5, 3, -20.5, 0, -20)
+atrace(97, -19.5, 97, -20.5, 100, -20)
+
 #a
-drawing.add(dxf.line((45, 30), (55, 30)))
-#a arrow left
-drawing.add(dxf.line((45,30), (47,32)))
-drawing.add(dxf.line((45,30), (47,28)))
-#a arrow rght
-drawing.add(dxf.line((55,30), (53,32)))
-drawing.add(dxf.line((55,30), (53,28)))
+#def dim4_arrow(l21, l22, l23, l24):
+dim4_arrow(45, 30, 55, 30)
+atrace(48, 29.5, 48, 30.5, 45, 30)
+atrace(52, 29.5, 52, 30.5, 55, 30)
+
 #P(kn)
-drawing.add(dxf.line((50, 52), (50, 45)))
-drawing.add(dxf.line((50, 45), (48, 47)))
-drawing.add(dxf.line((50, 45), (52, 47)))
+#def dim4_arrow(l21, l22, l23, l24):
+dim4_arrow(50, 52, 50, 45)
+atrace(49.5, 48, 50.5, 48, 50, 45)
 
 drawing.save()
-
-print "'" + drawing_name + ".dxf'", "file generated in the same directory"
-
-
-
