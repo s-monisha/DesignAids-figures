@@ -6,7 +6,7 @@ from dxfwrite.const import CENTER
 #import pdb
 
 #input file
-f=open('first.csv')
+f=open('Uniformly deep footing.csv')
 lst={'A':'','D':'','a':''}
 data=[row for row in csv.reader(f)]
 for i in lst.keys():
