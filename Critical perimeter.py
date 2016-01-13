@@ -17,7 +17,7 @@ def atrace(t1, t2, t3, t4, t5, t6):
 text_size = 2.5
 
 # input file
-f=open('critical.csv')
+f=open('Critical perimeter.csv')
 lst={'A':'','a':'','d':''}
 data=[row for row in csv.reader(f)]
 for i in lst.keys():
