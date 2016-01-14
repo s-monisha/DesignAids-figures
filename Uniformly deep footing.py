@@ -2,7 +2,7 @@ from dxfwrite import DXFEngine as dxf
 import csv
 from dxfwrite.const import CENTER
 
-# import pdb
+import pdb
 
 # input file
 f = open('Uniformly deep footing.csv')
@@ -15,8 +15,11 @@ for i in lst.keys():
                     break
     lst[i] = int(ans)
 
+# scaling factor
+scale_factor = 3
+
 # text size
-textsize = 2.5
+textsize = 2.5 * scale_factor
 
 # ####################### Function Definitions #######################
 
@@ -25,8 +28,8 @@ def drawline(points_list):
     for i in range(len(points_list) - 1):
         if(i == 7):
             continue
-        c = tuple(points_list[i])
-        d = tuple(points_list[i+1])
+        c = tuple(scale_factor*p for p in points_list[i])
+        d = tuple(scale_factor*q for q in points_list[i+1])
         drawing.add(dxf.line(c, d, color=7))
 
 
@@ -61,6 +64,7 @@ def dim4_arrow(l21, l22, l23, l24):
 def atrace(t1, t2, t3, t4, t5, t6):
     drawing.add(dxf.trace([(t1, t2), (t3, t4), (t5, t6)]))
 
+# point list for creating the base.
 points_list = [((lst['A']-lst['a']) / 2, 2*lst['D']),
                ((lst['A']-lst['a']) / 2, lst['D']), (0, lst['D']), (0, 0),
                (lst['A'], 0), (lst['A'], lst['D']),
@@ -91,32 +95,42 @@ drawing_name = raw_input("Enter a drawing name to be created without\
  the extension dxf: ")
 drawing = dxf.drawing(drawing_name+".dxf")
 
-# pdb.set_trace()
+pdb.set_trace()
 
 # lines
-
 drawline(points_list)
 
 
+# ################# Bed of Arrows #################
+
 # arrow base line:
-dist_of_arrow = 10
-no_of_arrows = 10
+dist_of_arrow = 30
+no_of_arrows = 20
 
-left_point = 0, -dist_of_arrow
-right_point = lst['A'], -dist_of_arrow
-drawing.add(dxf.line(left_point, right_point, color=7))
+# left and right base point for arrows to create base line.
+left_point = (points_list[3][0], points_list[3][1] - dist_of_arrow)
+right_point = (points_list[4][0] * scale_factor, left_point[1])
+drawing.add(dxf.line(left_point, right_point, color=3))
 
-list_xcoordinates_for_arrows = [(float(lst['A'])/(no_of_arrows - 1))*i
+# only x-coordinates for arrows
+list_xcoordinates_for_arrows = [(right_point[0]/(no_of_arrows))*i
                                 for i in xrange(no_of_arrows + 1)]
+
+# arrow base points.
 list_bottom_points = zip(list_xcoordinates_for_arrows,
-                         [-dist_of_arrow] * no_of_arrows)
-list_arrow_points = zip(list_xcoordinates_for_arrows, [0] * no_of_arrows)
+                         [-dist_of_arrow] * (no_of_arrows + 1))
+
+# corresponding upper points.
+list_arrow_points = zip(list_xcoordinates_for_arrows, [0] * (no_of_arrows + 1))
 final_arrow_points = zip(list_bottom_points, list_arrow_points)
 
-for i in xrange(len(final_arrow_points)):
+# creating arrows.
+for i in range(len(final_arrow_points)):
     arrow(final_arrow_points[i][0], final_arrow_points[i][1])
 
-# text
+
+# ################# Dimensionized Text #################
+
 drawing.add(dxf.text('a', height=textsize, halign=CENTER, alignpoint=(50, 33)))
 drawing.add(dxf.text('D', height=textsize, halign=CENTER, alignpoint=(115, 8)))
 drawing.add(dxf.text('A', height=textsize, halign=CENTER,
