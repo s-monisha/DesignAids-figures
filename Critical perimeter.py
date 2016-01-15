@@ -1,148 +1,135 @@
 from dxfwrite import DXFEngine as dxf
-from dxfwrite.const import CENTER
 import csv
 import math
-import pdb
-a = 8
-A = 50
-d = 10
+from dxfwrite.const import CENTER
 
-points_list =[(0,A), (0,0), (A,0), (A,A), (0,A),(((A - a) / 2), ((A + a) / 2)), (((A - a) / 2), ((A - a) / 2)), (((A + a) / 2), ((A -a) / 2)), (((A + a) / 2), ((A + a) / 2)), (((A - a) / 2), ((A + a) / 2)), (((A - a - d) / 2), ((A + a + d) / 2)), (((A - a - d) / 2), ((A - a - d ) / 2)), (((A + a + d) / 2), ((A - a - d) / 2)), (((A + a + d) / 2), ((A + a + d) / 2)), (((A - a - d) / 2), ((A + a + d) / 2))]  
+def dim12_arrow(u1, u2, u3, u4, l1, l2, l3, l4, c1, c2, c3, c4):
+    drawing.add(dxf.line((c1, c2), (c3, c4)))
+    drawing.add(dxf.line((u1, u2), (u3, u4)))
+    drawing.add(dxf.line((l1, l2), (l3, l4)))
 
-pdb.set_trace()
+def dim4_arrow(l11, l12, l13, l14):
+    drawing.add(dxf.line((l11, l12), (l13, l14)))
+
+def atrace(t1, t2, t3, t4, t5, t6):
+    drawing.add(dxf.trace([(t1, t2), (t3, t4), (t5, t6)]))
+
+text_size = 2.5
+
+# input file
+f=open('Critical perimeter.csv')
+lst={'A':'','a':'','d':''}
+data=[row for row in csv.reader(f)]
+for i in lst.keys():
+    for j in range(len(data)):
+            if(i==data[j][0]):
+                    ans=data[j][1]
+                    break;
+    lst[i]=int(ans)
+
+points_list =[(0,lst['A']), (0,0), (lst['A'],0), (lst['A'],lst['A']), (0,lst['A']),(((lst['A'] - lst['a']) / 2), ((lst['A'] + lst['a']) / 2)),
+                            (((lst['A'] - lst['a']) / 2), ((lst['A'] - lst['a']) / 2)), (((lst['A'] + lst['a']) / 2), ((lst['A'] -lst['a']) / 2)),
+                            (((lst['A'] + lst['a']) / 2), ((lst['A'] + lst['a']) / 2)), (((lst['A'] - lst['a']) / 2), ((lst['A'] + lst['a']) / 2)),
+                            (((lst['A'] - lst['a'] - lst['d']) / 2), ((lst['A'] + lst['a'] + lst['d']) / 2)),
+                            (((lst['A'] - lst['a'] - lst['d']) / 2), ((lst['A'] - lst['a'] - lst['d'] ) / 2)),
+                            (((lst['A'] + lst['a'] + lst['d']) / 2), ((lst['A'] - lst['a'] - lst['d']) / 2)),
+                            (((lst['A'] + lst['a'] + lst['d']) / 2), ((lst['A'] + lst['a'] + lst['d']) / 2)),
+                            (((lst['A'] - lst['a'] - lst['d']) / 2), ((lst['A'] + lst['a'] + lst['d']) / 2))]
 
 string_for_csv = str()
-
 for i in xrange(len(points_list)):
 
-    string_for_csv = string_for_csv + str(points_list[i][0]) + "," + str(points_list[i][1]) + "\n"   
+    string_for_csv = string_for_csv + str(points_list[i][0]) + "," + str(points_list[i][1]) + "\n"
 
 
-print string_for_csv
-
+# csv file
 inp = raw_input("Enter the name of csv file you want to generate: ")
-
 fw = open(inp+".csv", "w")
-
 fw.write(string_for_csv)
 
-print "'" + inp + ".csv'", "file generated in the same directory"
-
+# dxf drawing
 drawing_name = raw_input("Enter a drawing name to be created without the extension dxf: ")
 drawing = dxf.drawing(drawing_name+".dxf")
 
-# squares:
-drawing.add(dxf.polyline(points_list[0:5], color=7))
-drawing.add(dxf.polyline(points_list[5:10], color=7))
-drawing.add(dxf.polyline(points_list[10:15], color=7))
+# Squares:
+drawing.add(dxf.line(points_list[0],points_list[1], color=7))
+drawing.add(dxf.line(points_list[1],points_list[2], color=7))
+drawing.add(dxf.line(points_list[2],points_list[3], color=7))
+drawing.add(dxf.line(points_list[3],points_list[4], color=7))
+drawing.add(dxf.line(points_list[4],points_list[5], color=7))
+drawing.add(dxf.line(points_list[5],points_list[6], color=7))
+drawing.add(dxf.line(points_list[6],points_list[7], color=7))
+drawing.add(dxf.line(points_list[7],points_list[8], color=7))
+drawing.add(dxf.line(points_list[8],points_list[9], color=7))
+drawing.add(dxf.line(points_list[9],points_list[10], color=7))
+drawing.add(dxf.line(points_list[10],points_list[11], color=7, layer='TESTLAYER',linetype='DASHEDX2'))
+drawing.add(dxf.line(points_list[11],points_list[12], color=7,  layer='TESTLAYER',linetype='DASHEDX2'))
+drawing.add(dxf.line(points_list[12],points_list[13], color=7,  layer='TESTLAYER',linetype='DASHEDX2'))
+drawing.add(dxf.line(points_list[13],points_list[14], color=7,  layer='TESTLAYER',linetype='DASHEDX2'))
 
-# diagonal lines: 
+# Diagonal lines:
 drawing.add(dxf.line(points_list[0],points_list[5], color= 7))
 drawing.add(dxf.line(points_list[1],points_list[6], color= 7))
 drawing.add(dxf.line(points_list[2],points_list[7], color= 7))
 drawing.add(dxf.line(points_list[3],points_list[8], color= 7))
 
-print "'" + drawing_name + ".dxf'", "file generated in the same directory"
+# text
+drawing.add(dxf.text('A', height=text_size, halign=CENTER, alignpoint=(115, 50)))
+drawing.add(dxf.text('A', height=text_size, halign=CENTER, alignpoint=(50, -8)))
+drawing.add(dxf.text('a', height=text_size, halign=CENTER, alignpoint=(85, 52)))
+drawing.add(dxf.text('d/2', height=text_size, halign=CENTER, alignpoint=(85, 65)))
+drawing.add(dxf.text('a', height=text_size, halign=CENTER, alignpoint=(48, 21)))
+drawing.add(dxf.text('d/2', height=text_size, halign=CENTER, alignpoint=(35, 21)))
+drawing.add(dxf.text('d/2', height=text_size, halign=CENTER, alignpoint=(64, 21)))
+drawing.add(dxf.text('d/2', height=text_size, halign=CENTER, alignpoint=(85, 34)))
+drawing.add(dxf.text('1', height=text_size, halign=CENTER, alignpoint=(30, 73)))
+drawing.add(dxf.text('1\'', height=text_size, halign=CENTER, alignpoint=(70,73 )))
+drawing.add(dxf.text('1', height=text_size, halign=CENTER, alignpoint=(30, 17)))
+drawing.add(dxf.text('1\'', height=text_size, halign=CENTER, alignpoint=(70, 17)))
 
-#text added
-drawing.add(dxf.text('A', height=3.5, halign=CENTER, alignpoint=(94, 40)))
-drawing.add(dxf.text('A', height=3.5, halign=CENTER, alignpoint=(40, -8)))
-drawing.add(dxf.text('a', height=2, halign=CENTER, alignpoint=(60, 41)))
-drawing.add(dxf.text('d/2', height=2, halign=CENTER, alignpoint=(47, 21)))
-drawing.add(dxf.text('a', height=2, halign=CENTER, alignpoint=(38, 21)))
-drawing.add(dxf.text('d/2', height=2, halign=CENTER, alignpoint=(33, 21)))
-drawing.add(dxf.text('d/2', height=2, halign=CENTER, alignpoint=(60, 46)))
-drawing.add(dxf.text('d/2', height=2, halign=CENTER, alignpoint=(60, 32)))
-drawing.add(dxf.text('1', height=3, halign=CENTER, alignpoint=(30, 52)))
-drawing.add(dxf.text('1\'', height=3, halign=CENTER, alignpoint=(50, 52)))
-drawing.add(dxf.text('1', height=3, halign=CENTER, alignpoint=(30, 17)))
-drawing.add(dxf.text('1\'', height=3, halign=CENTER, alignpoint=(50, 17)))
-#A right
-drawing.add(dxf.line((90, 80), (90, 0)))
-drawing.add(dxf.line((88, 80), (92, 80)))
-drawing.add(dxf.line((88, 0), (92, 0)))
-#A right upper arrow
-drawing.add(dxf.line((90, 80), (88, 78)))
-drawing.add(dxf.line((90, 80), (92, 78)))
-#A right bottom arrow
-drawing.add(dxf.line((90, 0), (88, 2)))
-drawing.add(dxf.line((90, 0), (92, 2)))
 
-#A bottom
-drawing.add(dxf.line((0, -10), (80, -10)))
-drawing.add(dxf.line((0, -8), (0, -12)))
-drawing.add(dxf.line((80, -8), (80, -12)))
-#A left bottom arrow
-drawing.add(dxf.line((0, -10), (2, -8)))
-drawing.add(dxf.line((0, -10), (2, -12)))
-#A right bottom arrow
-drawing.add(dxf.line((80, -10), (78, -8)))
-drawing.add(dxf.line((80, -10), (78, -12)))
+# A upperright
+dim12_arrow(108, 100, 112, 100, 110, 100, 110, 0, 108, 0, 112, 0)
+atrace(109.5, 97, 110.5, 97, 110, 100)
+atrace(109.5, 3, 110.5, 3, 110, 0)
 
-#center lines
-drawing.add(dxf.line((40, 80), (40, 0), layer='TESTLAYER',linetype='PHANTOMX2'))
-drawing.add(dxf.line((0, 40), (80, 40), layer='TESTLAYER',linetype='PHANTOMX2'))
-#d/2
-drawing.add(dxf.line((55, 49), (55, 45)))
-drawing.add(dxf.line((49, 45), (58, 45)))
-drawing.add(dxf.line((52, 49), (58, 49)))
-#d/2 arrow upper
-drawing.add(dxf.line((55, 49), (54, 48)))
-drawing.add(dxf.line((55, 49), (56, 48)))
-#d/2 arrow lower
-drawing.add(dxf.line((55, 45), (54, 46)))
-drawing.add(dxf.line((55, 45), (56, 46)))
+# A bottom
+dim12_arrow(0, -8, 0, -12, 0, -10, 100, -10, 100, -8, 100, -12)
+atrace(3, -9.5 , 3, -10.5 , 0, -10)
+atrace(97, -9.5, 97, -10.5, 100, -10)
 
-#a
-drawing.add(dxf.line((55, 45), (55, 36)))
-drawing.add(dxf.line((49, 36), (58, 36)))
-#a upper arrow
-drawing.add(dxf.line((55, 45), (54, 44)))
-drawing.add(dxf.line((55, 45), (56, 44)))
-#a lower arrow
-drawing.add(dxf.line((55, 36), (54, 37)))
-drawing.add(dxf.line((55, 36), (56, 37)))
+# Center lines
+drawing.add(dxf.line((50, 100), (50, 0), layer='TESTLAYER',linetype='CENTER'))
+drawing.add(dxf.line((0, 50), (100, 50), layer='TESTLAYER',linetype='CENTER'))
 
-#d/2
-drawing.add(dxf.line((55, 36), (55, 31)))
-drawing.add(dxf.line((52, 31), (58, 31)))
-#d/2 upper arrow
-drawing.add(dxf.line((55, 36), (54, 35)))
-drawing.add(dxf.line((55, 36), (56, 35)))
-#d/2 lower arrow
-drawing.add(dxf.line((55, 31), (54, 32)))
-drawing.add(dxf.line((55, 31), (56, 32)))
+# d/2
+dim12_arrow(77, 70, 82, 70,80, 70, 80, 60, 68, 60, 82, 60)
+atrace(79.5, 67, 80.5, 67, 80, 70)
+atrace(79.5, 63, 80.5, 63, 80, 60)
 
-#d/2 bottom line
-drawing.add(dxf.line((31, 25), (36, 25)))
-#d/2 right bottom
-drawing.add(dxf.line((36, 31), (36, 23)))
-#d/2 bottom left line
-drawing.add(dxf.line((31, 27), (31, 23)))
-#d/2 bottom left arrow
-drawing.add(dxf.line((31, 25), (32, 24)))
-drawing.add(dxf.line((31, 25), (32, 26)))
-#d/2 bottom right arrow
-drawing.add(dxf.line((36, 25), (35, 24)))
-drawing.add(dxf.line((36, 25), (35, 26)))
-#a bottom line
-drawing.add(dxf.line((36, 25), (44, 25)))
-drawing.add(dxf.line((44, 31), (44, 22)))
-#d/2 bottom line right
-drawing.add(dxf.line((44, 25), (49, 25)))
-drawing.add(dxf.line((49, 23), (49, 27)))
-#d/2 bottom line left arrow
-drawing.add(dxf.line((44, 25), (45, 24)))
-drawing.add(dxf.line((44, 25), (45, 26)))
-#d/2 bottom line left arrow
-drawing.add(dxf.line((49, 25), (48, 24)))
-drawing.add(dxf.line((49, 25), (48, 26)))
-#a bottom left arrow
-drawing.add(dxf.line((36, 25), (37, 24)))
-drawing.add(dxf.line((36, 25), (37, 26)))
-# a bottom right arrow
-drawing.add(dxf.line((44, 25), (43, 24)))
-drawing.add(dxf.line((44, 25), (43, 26)))
+# a
+dim4_arrow(80, 60, 80, 40)
+atrace(79.5, 57, 80.5, 57,80, 60)
+atrace(79.5, 43, 80.5, 43,80, 40)
+
+# d/2
+dim12_arrow(77, 30, 82, 30, 80, 40, 80, 30, 68, 40, 82, 40)
+atrace(79.5, 33, 80.5, 33, 80, 30)
+atrace(79.5, 37, 80.5, 37, 80, 40)
+
+# d/2 bottom
+dim12_arrow(30, 27, 30,23, 30, 25, 40, 25, 40, 31, 40, 23)
+atrace(33, 24.5, 33, 25.5, 30, 25)
+atrace(37, 24.5, 37, 25.5, 40, 25)
+
+# a bottom
+dim4_arrow(40, 25, 60, 25)
+atrace(43, 24.5, 43, 25.5, 40, 25)
+atrace(57, 24.5, 57, 25.5, 60, 25)
+
+# d/2 bottom
+dim12_arrow(70, 23, 70, 27, 60, 25, 70, 25, 60, 31, 60, 22)
+atrace(63, 24.5, 63, 25.5, 60, 25)
+atrace(67, 24.5, 67, 25.5, 70, 25)
 
 drawing.save()
-
