@@ -26,7 +26,7 @@ def atrace(t1, t2, t3, t4, t5, t6):
 
 
 #input file
-f=open('Sloped footing(c).csv')
+f=open('second.csv')
 lst={'A':'','D':'','a':'','Dm':''}
 data=[row for row in csv.reader(f)]
 for i in lst.keys():
