@@ -23,7 +23,7 @@ def atrace(t1, t2, t3, t4, t5, t6):
 textsize = 2.5
 
 # input file
-f=open('Shear.csv')
+f=open('shear.csv')
 lst={'A':'','D':'','a':'','Dm':'','ClearCover':'','Dia':''}
 data=[row for row in csv.reader(f)]
 for i in lst.keys():
