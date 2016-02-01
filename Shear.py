@@ -121,4 +121,28 @@ drawing.add(dxf.trace([(39, 32.5), (39, 31.5), (36, 32)]))
 drawing.add(dxf.trace([(41, 32.5), (41,31.5 ), (44, 32)]))
 drawing.add(dxf.line((40.5, 43), (40.5, -3), layer='TESTLAYER',linetype='PHANTOMX2'))
 
+#circle code
+def fill_circle(radius, center, fineness = 36):
+    '''Makes an approximate circle.
+    Specify radius as a float and center as a tuple like (x_coord, y_coord)
+    Default value of fineness is 36. If you want to make a finer circle, increase this value.
+    Fineness must be an integer.'''
+    from math import pi, sin, cos
+    circle_points = [((center[0] + radius * cos(2 * pi / fineness * i)), (center[1] + radius * sin(2 * pi / fineness * i))) 
+                     for i in xrange(fineness + 1)]
+    for i in xrange(fineness):
+        drawing.add(dxf.trace([circle_points[i], circle_points[i + 1], center]))
+    return
+
+no_of_bars_above = 9    # this value should be moved to input file, along with 2 types of dia, and clear covers.
+some_space_at_end = 2   # it is constant, so it is ok here.
+center_to_center = ((lst['A'] - lst['ClearCover'] * 2 - some_space_at_end * 2) / float(no_of_bars_above - 1))
+center_of_first_bar = (lst['ClearCover'] + some_space_at_end, lst['ClearCover'] + lst['Dia'] + lst['Dia'] / 2.0)
+
+x_coord_of_center_of_bars = [(center_of_first_bar[0] + i * center_to_center) for i in xrange(no_of_bars_above)]
+print x_coord_of_center_of_bars
+
+for x in x_coord_of_center_of_bars:
+    fill_circle(lst['Dia'] / 2.0, (x, center_of_first_bar[1]), fineness = 36)
+
 drawing.save()

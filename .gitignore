@@ -58,3 +58,5 @@ target/
 
 # Personal additions:
 *.dxf
+*.swp
+*~
